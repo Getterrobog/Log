@@ -1,19 +1,19 @@
 Log
 ================
 ``` sh
-(base) This log will document my workflow throughout the course as well as be a platform for Dr. Barshis to follow my progress.
+This log will document my workflow throughout the course as well as be a platform for Dr. Barshis to follow my progress.
 ```
 ## Created log repository:
 <https://github.com/Getterrobog/Log.git>
 I ran the commands Dan instructed.  From now I need to remember the following:
 ``` sh
-(base) git add README.md 
-(base) git commit -m "insert relevant comment"
-(base) git push -u origin main
+git add README.md 
+git commit -m "insert relevant comment"
+git push -u origin main
 ```
-
 ### Day 2
 Exercise day02
+
 /cm/shared/courses/dbarshis/21AdvGenomics/sandboxes/Ivan/data/exercises
 gunzip Exercise2.fasta.gz 
 tar -zxvf Exercise2.fastq.tar.gz
