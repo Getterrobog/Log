@@ -5,7 +5,7 @@ This log will document my workflow throughout the course as well as be a platfor
 ```
 ## Created log repository:
 <https://github.com/Getterrobog/Log.git>
-I ran the commands Dan instructed.  From now I need to remember the following:
+I ran the commands Dan instructed.  I need to remember the following:
 ``` sh
 git add README.md 
 git commit -m "insert relevant comment"
