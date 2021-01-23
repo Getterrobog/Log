@@ -13,7 +13,7 @@ git push -u origin main
 ```
 ### Day 2
 Exercise day02
-
+``` sh
 /cm/shared/courses/dbarshis/21AdvGenomics/sandboxes/Ivan/data/exercises
 gunzip Exercise2.fasta.gz 
 tar -zxvf Exercise2.fastq.tar.gz
@@ -32,3 +32,4 @@ contigs < 150bp = 0
 contigs >= 500bp = 138
 contigs >= 1000bp = 138
 contigs >= 2000bp = 135
+```
