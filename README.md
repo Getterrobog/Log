@@ -115,10 +115,11 @@ nano Trimclipfilter.sh
 #SBATCH --mail-type=END
 #SBATCH --job-name=Ivan_Trimclipfilter
 
-python Trimclipfilterstatsbatch_advbioinf.py adapterlist_advbioinf.txt
+Trimclipfilterstatsbatch_advbioinf.py adapterlist_advbioinf.txt *.fastq
 
 cp ../../scripts/Trimclipfilterstatsbatch_advbioinf.py .
-sbatch Trimclipfilter.sh 
-Submitted batch job 9270549
+Trimclipfilter.sh 
+Submitted batch job 9270553
+
 
 ```
