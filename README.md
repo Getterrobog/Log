@@ -115,11 +115,47 @@ nano Trimclipfilter.sh
 #SBATCH --mail-type=END
 #SBATCH --job-name=Ivan_Trimclipfilter
 
-Trimclipfilterstatsbatch_advbioinf.py adapterlist_advbioinf.txt *.fastq
+python Trimclipfilterstatsbatch_advbioinf.py adapterlist_advbioinf.txt *.fastq
 
 cp ../../scripts/Trimclipfilterstatsbatch_advbioinf.py .
 Trimclipfilter.sh 
 Submitted batch job 9270553
-
-
 ```
+### Day 4
+```sh
+I created an alias (cda) to cd to my sandbox
+```
+Homework day04
+```sh
+cda
+cd data/fastq/filteringstats/
+pwd
+/cm/shared/courses/dbarshis/21AdvGenomics/sandboxes/Ivan/data/fastq/filteringstats
+salloc
+/cm/shared/courses/dbarshis/21AdvGenomics/scripts/Schafran_trimstatstable_advbioinf_clippedtrimmed.py -h
+python /cm/shared/courses/dbarshis/21AdvGenomics/scripts/Schafran_trimstatstable_advbioinf_clippedtrimmed.py trimclipstats.txt Ivan_trimclipstatsout.txt
+tail -n +2 YOURNAME_trimclipstatsout.txt >> /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/Fulltrimclipstatstable.txt
+cd ../QCFastqs/
+
+#!/bin/bash -l
+
+#SBATCH -o ivanbowtie2.txt
+#SBATCH -n 1
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=JOBNAME
+
+module load bowtie2/2.4
+for i in *_clippedtrimmed.fastq; do bowtie2 --rg-id ${i%_clippedtrimmed.fastq} \
+--rg SM:${i%_clippedtrimmed.fastq} \
+--very-sensitive -x /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/refassembly/Apoc_hostsym -U $i \
+> ${i%_clippedtrimmedfilterd.fastq}.sam --no-unal -k 5; done
+
+sbatch bowtie2.sh 
+Submitted batch job 9271111
+
+squeue -u ilope002
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON) 
+           9271111      main  JOBNAME ilope002  R       0:09      1 coreV2-25-007 
+           9271099      main       sh ilope002  R    1:03:39      1 coreV3-23-033 
+
