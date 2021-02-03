@@ -158,4 +158,35 @@ squeue -u ilope002
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON) 
            9271111      main  JOBNAME ilope002  R       0:09      1 coreV2-25-007 
            9271099      main       sh ilope002  R    1:03:39      1 coreV3-23-033 
+```
+Homework day 05
+```sh
+Katie and Ivan 
+Katie mkdir QCFastqs/Trinity
+cp *.fastq ../../../../kparker/data/fastq/QCFastqs/Trinity/
+cd ../../../../kparker/data/fastq/QCFastqs/Trinity/
+ls *.fastq | head -32 > 32fileslist.txt
+nano Trinitybash.sh
+
+#!/bin/bash -l
+
+#SBATCH -o Katie_Ivan_Trinity.txt
+#SBATCH -n 32
+#SBATCH -p himem
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=KatieIvanTrinity
+
+enable_lmod
+module load container_env trinity
+
+crun Trinity --seqType fq --max_memory 768G --normalize_reads --single RI_B_02_14_clippedtrimmed.fastq,RI_B_02_18_clippedtrimmed.fastq,RI_B_02_22_clippedtrimmed.fastq,RI_B_03_14_clippedtrimmed.fastq,RI_B_03_18_clippedtrimmed.fastq,RI_B_03_22_clippedtrimmed.fastq,RI_B_09_SNP_clippedtrimmed.fastq,RI_B_10_SNP_clippedtrimmed.fastq,RI_W_02_14_clippedtrimmed.fastq,RI_W_02_18_clippedtrimmed.fastq,RI_W_02_22_clippedtrimmed.fastq,RI_W_03_14_clippedtrimmed.fastq,RI_W_03_18_clippedtrimmed.fastq,RI_W_03_22_clippedtrimmed.fastq,RI_W_09_SNP_clippedtrimmed.fastq,RI_W_10_SNP_clippedtrimmed.fastq,VA_B_02_14_clippedtrimmed.fastq,VA_B_02_18_clippedtrimmed.fastq,VA_B_02_22_clippedtrimmed.fastq,VA_B_03_14_clippedtrimmed.fastq,VA_B_03_18_clippedtrimmed.fastq,VA_B_03_22_clippedtrimmed.fastq,VA_B_08_SNP_clippedtrimmed.fastq,VA_B_10_SNP_clippedtrimmed.fastq,VA_W_02_14_clippedtrimmed.fastq,VA_W_02_18_clippedtrimmed.fastq,VA_W_02_22_clippedtrimmed.fastq,VA_W_03_14_clippedtrimmed.fastq,VA_W_03_18_clippedtrimmed.fastq,VA_W_03_22_clippedtrimmed.fastq,VA_W_09_SNP_clippedtrimmed.fastq,VA_W_10_SNP_clippedtrimmed.fastq --CPU 32
+
+Katie salloc
+salloc: Pending job allocation 9272354
+salloc: job 9272354 queued and waiting for resources
+salloc: job 9272354 has been allocated resources
+salloc: Granted job allocation 9272354
+[kpark049@coreV2-22-007 Trinity]$ sbatch Trinitybash.sh
+Submitted batch job 9272355
 
