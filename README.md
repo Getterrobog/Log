@@ -159,6 +159,8 @@ squeue -u ilope002
            9271111      main  JOBNAME ilope002  R       0:09      1 coreV2-25-007 
            9271099      main       sh ilope002  R    1:03:39      1 coreV3-23-033 
 ```
+###Day 5
+
 Homework day 05
 ```sh
 Katie and Ivan 
@@ -189,4 +191,194 @@ salloc: job 9272354 has been allocated resources
 salloc: Granted job allocation 9272354
 [kpark049@coreV2-22-007 Trinity]$ sbatch Trinitybash.sh
 Submitted batch job 9272355
+```
+###Day 6
 
+Homework day 06
+```sh
+salloc
+salloc: Pending job allocation 9272861
+salloc: job 9272861 queued and waiting for resources
+salloc: job 9272861 has been allocated resources
+salloc: Granted job allocation 9272861
+
+cda
+cd data/fastq/QCFastqs/
+mkdir Trinity
+mkdir Trinity/trinity_out_dir
+cd Trinity/trinity_out_dir
+cp cp /cm/shared/courses/dbarshis/21AdvGenomics/sandboxes/kparker/data/fastq/QCFastqs/Trinity/djb_trinity_out/Trinity.fasta .
+
+/cm/shared/apps/trinity/2.0.6/util/TrinityStats.pl Trinity.fasta 
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "C.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+
+
+################################
+## Counts of transcripts, etc.
+################################
+Total trinity 'genes':	34661
+Total trinity transcripts:	36565
+Percent GC: 44.57
+
+########################################
+Stats based on ALL transcript contigs:
+########################################
+
+	Contig N10: 1476
+	Contig N20: 874
+	Contig N30: 619
+	Contig N40: 476
+	Contig N50: 388
+
+	Median contig length: 285
+	Average contig: 388.75
+	Total assembled bases: 14214539
+
+
+#####################################################
+## Stats based on ONLY LONGEST ISOFORM per 'GENE':
+#####################################################
+
+	Contig N10: 1217
+	Contig N20: 746
+	Contig N30: 554
+	Contig N40: 440
+	Contig N50: 368
+
+	Median contig length: 282
+	Average contig: 371.25
+	Total assembled bases: 12867801
+
+cd ../../
+pwd
+/cm/shared/courses/dbarshis/21AdvGenomics/sandboxes/Ivan/data/fastq/QCFastqs
+less ivanbowtie2.txt 
+grep "overall alignment rate" ivanbowtie2.txt| cut -d "%" -f1
+1.91
+1.45
+1.09
+2.03
+3.06
+2.21
+2.05
+2.25
+2.42
+2.35
+2.15
+1.50
+2.50
+1.67
+35.61
+1.68
+Average 4.12%
+
+grep "aligned exactly 1 time" ivanbowtie2.txt
+0.86
+0.6
+0.68
+1.23
+1.44
+1.36
+1.13
+1.26
+1.04
+1.11
+1.24
+1.01
+1.37
+1.06
+0.91
+1.27
+Average 1.098125%
+
+grep "aligned exactly 1 time" fastq/QCFastqs/ivanbowtie2.txt | cut -d "(" -f1
+50875 
+62969 
+94235 
+167093 
+54548 
+197608 
+158279 
+173486 
+87780 
+163906 
+93271 
+93998 
+172337 
+246957 
+136 
+2129737 
+Average number of reads 246700.9375
+
+grep "aligned >1 times" ivanbowtie2.txt
+1.05
+0.85
+0.41
+0.79
+1.62
+0.85
+0.92
+0.99
+1.38
+1.24
+0.91
+0.49
+1.14
+0.61
+34.7
+0.41
+Average 3.0225%
+
+nano alignstats.txt
+Lane02_irl	4.120625	1.098125	246700.9375 3.0225
+[ilope002@coreV2-22-007 QCFastqs]$ cat alignstats.txt >> /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/alignmentstatstable.txt
+
+cd ../../
+mkdir testassembly
+mv fastq/QCFastqs/Trinity/trinity_out_dir/Trinity.fasta ./testassembly/
+
+#!/bin/bash -l
+
+#SBATCH -o ivancleaner.txt
+#SBATCH -n 1
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=Ivan_cleaner
+
+rm -r /cm/shared/courses/dbarshis/21AdvGenomics/sandboxes/Ivan/data/fastq/QCFastqs/Trinity
+rm -r /cm/shared/courses/dbarshis/21AdvGenomics/sandboxes/Ivan/data/fastq/originalfastqs
+rm -r /cm/shared/courses/dbarshis/21AdvGenomics/sandboxes/Ivan/data/fastq/filteringstats
+
+sbatch ../scripts/cleaner.sh
+Submitted batch job 9272877
+
+#!/bin/bash -l
+
+#SBATCH -o ivanblaster.txt
+#SBATCH -n 6
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=Ivan_blaster
+
+enable_lmod
+module load container_env blast
+blastx -query Trinity.fasta -db /cm/shared/apps/blast/databases/uniprot_sprot_Sep2018 -out blastx.outfmt6 \ -evalue 1e-20 -num_threads 6 -max_target_seqs 1 -outfmt 6
+
+cd testassembly/
+
+sbatch ../../scripts/blaster.sh 
+Submitted batch job 9272880
+
+squeue -u ilope002
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON) 
+           9272884      main Ivan_bla ilope002 PD       0:00      1 (Priority) 
+           9272861      main       sh ilope002  R    3:40:49      1 coreV2-22-007 
+
+Job failed
+```
