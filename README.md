@@ -386,4 +386,94 @@ readjusted the script.  I am not sure why the \ character is necessary, but the
 script failed as I wrote it.  I will try \n and tab after \, and then removing 
 the \ and put all the flags on one line.
 The script worked
+
+cda
+cd data/fastq/QCfastqs
+head RI_B_02_14_clippedtrimmed.fastq.sam
+grep -v '@' RI_B_02_14_clippedtrimmed.fastq.sam | head
+
+All the lines in the header start with @
+
+salloc
+salloc: Pending job allocation 9273035
+salloc: job 9273035 queued and waiting for resources
+salloc: job 9273035 has been allocated resources
+salloc: Granted job allocation 9273035
+
+/cm/shared/courses/dbarshis/21AdvGenomics/scripts/get_explain_sam_flags_advbioinf.py *14_clippedtrimmed.fastq.sam
+
+RI_B_02_14_clippedtrimmed.fastq.sam
+['0', '272', '256', '16']
+0 :
+272 :
+	read reverse strand
+	not primary alignment
+256 :
+	not primary alignment
+16 :
+	read reverse strand
+RI_W_02_14_clippedtrimmed.fastq.sam
+['0', '272', '256', '16']
+0 :
+272 :
+	read reverse strand
+	not primary alignment
+256 :
+	not primary alignment
+16 :
+	read reverse strand
+VA_B_02_14_clippedtrimmed.fastq.sam
+['0', '272', '256', '16']
+0 :
+272 :
+	read reverse strand
+	not primary alignment
+256 :
+	not primary alignment
+16 :
+	read reverse strand
+VA_W_02_14_clippedtrimmed.fastq.sam
+['0', '272', '256', '16']
+0 :
+272 :
+	read reverse strand
+	not primary alignment
+256 :
+	not primary alignment
+16 :
+	read reverse strand
+
+cd ../../../scripts/
+nano Baminator.sh
+
+#!/bin/bash -l
+
+#SBATCH -o ivanBam.txt
+#SBATCH -n 1
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=Ivan_Baminator
+
+enable_lmod
+module load samtools/1
+for i in *.sam; do `samtools view -bS $i > ${i%.sam}_UNSORTED.bam`; done
+
+for i in *UNSORTED.bam; do samtools sort $i > ${i%_UNSORTED.bam}.bam
+samtools index ${i%_UNSORTED.bam}.bam
+done
+
+cd ../data/fastq/QCFastqs/
+
+sbatch ../../../scripts/Baminator.sh 
+Submitted batch job 9273040
+
+squeue -u ilope002
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON) 
+           9273040      main Ivan_Bam ilope002 PD       0:00      1 (Priority) 
+           9273028      main Ivan_bla ilope002  R    2:06:45      1 coreV1-22-005 
+           9273035      main       sh ilope002  R      25:43      1 coreV1-22-003 
+
+
+10- we need to run the read sorting step required for SNP calling, so if you have time, set up and run the following script on your .sam files to finish before Wednesday:
+
 ```
