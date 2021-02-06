@@ -381,4 +381,9 @@ squeue -u ilope002
            9272861      main       sh ilope002  R    3:40:49      1 coreV2-22-007 
 
 Job failed
+The out file stated -evalue is an error, but man states this is a proper flag.  I 
+readjusted the script.  I am not sure why the \ character is necessary, but the 
+script failed as I wrote it.  I will try \n and tab after \, and then removing 
+the \ and put all the flags on one line.
+The script worked
 ```
