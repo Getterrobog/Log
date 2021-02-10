@@ -565,11 +565,31 @@ for i in *.bam; do `freebayes --genotype-qualities -f /cm/shared/courses/dbarshi
 sbatch ../../../scripts/freebayesinator.sh 
 Submitted batch job 9276563
 
-I couldn't keep up with you here:
-enable_lmod
-module load samtools
-samtools tview -p RI_B_02_14_clippedtrimmed.fastq.bam /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/refassembly/15079_Apoc_hostsym.fasta
-samtools tview: cannot read "/cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/refassembly/15079_Apoc_hostsym.fasta"
+cd data/fastq/QCFastqs/
+#enable_lmod is on my tsch shell. You don't need to type it on Wahab, but you need it on cores and sbatch scripts
+[ilope002@turing1 QCFastqs]$ module load samtools
+[ilope002@turing1 QCFastqs]$ samtools tview RI_B_02_14_clippedtrimmed.fastq.bam /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/refassembly/15079_Apoc_hostsym.fasta
+1         11        21        31        41        51        61        71        
+TCAGGACCAAGTCCACTCATGATCGGAAGAGAAAACTTCTTTTTGGGATCGAATGGCCGGGCTCCAGACTTAGATATTAT
 
-I either made a mistake on the name of the reference file, or the order of arguments.
+nano ../../../scripts/freebayesinator2.sh
+
+#!/bin/bash -l
+
+#SBATCH -o ivanfreebayessubref2.txt
+#SBATCH -n 1
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=freebayessubref2
+
+enable_lmod
+module load dDocent
+freebayes --genotype-qualities -f /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/refassembly/15079_Apoc_hostsym.fasta *.fastq.bam > Ivanmergedfastqs.vcf
+
+sbatch ../../../scripts/freebayesinator2.sh
+Submitted batch job 9276595
+squeue -u ilope002
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON) 
+           9276595      main freebaye ilope002 PD       0:00      1 (Priority) 
+
 ```
