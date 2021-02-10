@@ -477,3 +477,99 @@ squeue -u ilope002
 10- we need to run the read sorting step required for SNP calling, so if you have time, set up and run the following script on your .sam files to finish before Wednesday:
 
 ```
+###Day 7
+
+Homework day 07
+```sh
+salloc
+salloc: Pending job allocation 9276473
+salloc: job 9276473 queued and waiting for resources
+salloc: job 9276473 has been allocated resources
+salloc: Granted job allocation 9276473
+cda
+cd data/testassembly/
+cd ../../scripts
+nano blastparsinator.sh
+
+#!/bin/bash -l
+
+#SBATCH -o ivanblastparsing.txt
+#SBATCH -n 1
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=Ivan_blastparsinator
+
+/cm/shared/apps/trinity/2.0.6/util/analyze_blastPlus_topHit_coverage.pl blastx.outfmt6 Trinity.fasta /cm/shared/apps/blast/databases/uniprot_sprot_Sep2018.fasta
+
+cda
+cd data/testassembly/
+
+sbatch ../../scripts/blastparsinator.sh 
+Submitted batch job 9276482
+
+exit
+
+cat ivanblastparsing.txt 
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+	LANGUAGE = (unset),
+	LC_ALL = (unset),
+	LANG = "C.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+#hit_pct_cov_bin	count_in_bin	>bin_below
+100	208	208
+90	104	312
+80	109	421
+70	142	563
+60	175	738
+50	274	1012
+40	418	1430
+30	817	2247
+20	1393	3640
+10	1049	4689
+
+cd ../../scripts/
+nano UnsortedBamintator.sh
+
+#!/bin/bash -l
+
+#SBATCH -o ivanrmunsortbam.txt
+#SBATCH -n 1
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=Ivan_rmunsortbaminator
+
+rm *UNSORTED.bam
+
+cd ../data/fastq/QCFastqs/
+sbatch ../../../scripts/UnsortedBamintator.sh 
+Submitted batch job 9276500
+
+cd ../../scripts/
+
+nano freebayesinator.sh
+
+#!/bin/bash -l
+
+#SBATCH -o ivanfreebayessubref.txt
+#SBATCH -n 1
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=Ivan_freebayessubrefinator
+
+enable_lmod
+module load dDocent
+for i in *.bam; do `freebayes --genotype-qualities -f /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/refassembly/15079_Apoc_hostsym.fasta $i > ${i%.fastq.bam}_unfiltered.vcf`; done
+
+sbatch ../../../scripts/freebayesinator.sh 
+Submitted batch job 9276563
+
+I couldn't keep up with you here:
+enable_lmod
+module load samtools
+samtools tview -p RI_B_02_14_clippedtrimmed.fastq.bam /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/refassembly/15079_Apoc_hostsym.fasta
+samtools tview: cannot read "/cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/refassembly/15079_Apoc_hostsym.fasta"
+
+I either made a mistake on the name of the reference file, or the order of arguments.
+```
