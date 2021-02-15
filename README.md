@@ -593,3 +593,143 @@ squeue -u ilope002
            9276595      main freebaye ilope002 PD       0:00      1 (Priority) 
 
 ```
+###Day 8
+
+Homework day 08
+```sh
+cda
+[ilope002@turing1 Ivan]$ cd data/fastq/QCFastqs/
+[ilope002@turing1 QCFastqs]$ mkdir ../../Sams
+[ilope002@turing1 QCFastqs]$ mv *.sam ../../Sams/
+[ilope002@turing1 QCFastqs]$ salloc
+salloc: Pending job allocation 9278246
+salloc: job 9278246 queued and waiting for resources
+salloc: job 9278246 has been allocated resources
+salloc: Granted job allocation 9278246
+mkdir ../../Bams
+mv *.bam ../../Bams/
+mv *.bai ../../Bams/
+cp /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/VCF/mergedfastq_HEAAstrangiaAssembly.vcf ../../VCF/
+/cm/shared/apps/vcftools/0.1.12b/bin/vcftools --vcf mergedfastq_HEAAstrangiaAssembly.vcf 
+enable_lmod
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf mergedfastq_HEAAstrangiaAssembly.vcf
+
+After filtering, kept 40 out of 40 Individuals
+After filtering, kept 1214003 out of a possible 1214003 Sites
+Run Time = 14.00 seconds
+cp /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/VCF/GoodCoralGenelistForVCFSubsetter.txt .
+head mergedfastq_HEAAstrangiaAssembly.vcf 
+##fileformat=VCFv4.1
+##fileDate=20180925
+##source=freeBayes v1.0.2-58-g054b257
+##reference=/cm/shared/courses/dbarshis/barshislab/Hannah/2018-Feb_Berkeley/sandbox/Barshis/ReferenceAssemblies/HEA_AstrangiaAssembly_Trinity.fasta
+##contig=<ID=TR1|c0_g1_i1,length=277>
+##contig=<ID=TR2|c0_g1_i1,length=364>
+##contig=<ID=TR3|c0_g1_i1,length=257>
+##contig=<ID=TR4|c0_g1_i1,length=250>
+##contig=<ID=TR5|c0_g1_i1,length=649>
+##contig=<ID=TR6|c0_g1_i1,length=367>
+grep -c ##contig mergedfastq_HEAAstrangiaAssembly.vcf 
+97495
+
+/cm/shared/courses/dbarshis/21AdvGenomics/scripts/21Sp_vcfsubsetter_advbioinf.py GoodCoralGenelistForVCFSubsetter.txt mergedfastq_HEAAstrangiaAssembly.vcf 
+Read in ContigList
+grep -c ##contig mergedfastq_HEAAstrangiaAssembly_subset.vcf 
+97495
+
+/cm/shared/courses/dbarshis/21AdvGenomics/scripts/21Sp_vcfsubsetter_advbioinf.py GoodCoralGenelistForVCFSubsetter.txt ../fastq/QCFastqs/Ivanmergedfastqs.vcf 
+Read in ContigList
+mv ../fastq/QCFastqs/Ivanmergedfastqs_subset.vcf .
+grep -c ##contig Ivanmergedfastqs_subset.vcf 
+15079
+
+/cm/shared/apps/vcftools/0.1.12b/bin/vcftools --vcf mergedfastq_HEAAstrangiaAs
+mergedfastq_HEAAstrangiaAssembly.vcf*
+mergedfastq_HEAAstrangiaAssembly_subset.vcf*
+[ilope002@coreV2-22-013 VCF]$ /cm/shared/apps/vcftools/0.1.12b/bin/vcftools --vcf mergedfastq_HEAAstrangiaAssembly_subset.vcf 
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf mergedfastq_HEAAstrangiaAssembly_subset.vcf
+
+After filtering, kept 40 out of 40 Individuals
+After filtering, kept 432676 out of a possible 432676 Sites
+Run Time = 3.00 seconds
+
+/cm/shared/apps/vcftools/0.1.12b/bin/vcftools --vcf mergedfastq_HEAAstrangiaAssembly_subset.vcf --max-missing 0.5 --mac 3 --minQ 30 --recode --recode-INFO-all --out raw.g5mac3
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf mergedfastq_HEAAstrangiaAssembly_subset.vcf
+	--recode-INFO-all
+	--mac 3
+	--minQ 30
+	--max-missing 0.5
+	--out raw.g5mac3
+	--recode
+
+After filtering, kept 40 out of 40 Individuals
+Outputting VCF file...
+After filtering, kept 99853 out of a possible 432676 Sites
+Run Time = 34.00 seconds
+
+cm/shared/apps/vcftools/0.1.12b/bin/vcftools --vcf Ivanmergedfastqs_subset.vcf --max-missing 0.5 --mac 3 --minQ 30 --recode --recode-INFO-all --out raw.g5mac3
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf Ivanmergedfastqs_subset.vcf
+	--recode-INFO-all
+	--mac 3
+	--minQ 30
+	--max-missing 0.5
+	--out raw.g5mac3
+	--recode
+
+After filtering, kept 16 out of 16 Individuals
+Outputting VCF file...
+After filtering, kept 0 out of a possible 0 Sites
+File does not contain any sites
+Run Time = 0.00 seconds
+
+
+/cm/shared/apps/vcftools/0.1.12b/bin/vcftools --vcf raw.g5mac3.recode.vcf --minDP 3 --recode --recode-INFO-all --out raw.g5mac3dp3 
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf raw.g5mac3.recode.vcf
+	--recode-INFO-all
+	--minDP 3
+	--out raw.g5mac3dp3
+	--recode
+
+After filtering, kept 40 out of 40 Individuals
+Outputting VCF file...
+After filtering, kept 99853 out of a possible 99853 Sites
+Run Time = 33.00 seconds
+
+/cm/shared/apps/vcftools/0.1.12b/bin/vcftools --vcf raw.g5mac3dp3.recode.vcf --missing-indv
+ 
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf raw.g5mac3dp3.recode.vcf
+	--missing-indv
+
+After filtering, kept 40 out of 40 Individuals
+Outputting Individual Missingness
+After filtering, kept 99853 out of a possible 99853 Sites
+Run Time = 3.00 seconds
+```
