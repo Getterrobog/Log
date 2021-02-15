@@ -159,7 +159,7 @@ squeue -u ilope002
            9271111      main  JOBNAME ilope002  R       0:09      1 coreV2-25-007 
            9271099      main       sh ilope002  R    1:03:39      1 coreV3-23-033 
 ```
-###Day 5
+### Day 5
 
 Homework day 05
 ```sh
@@ -192,7 +192,7 @@ salloc: Granted job allocation 9272354
 [kpark049@coreV2-22-007 Trinity]$ sbatch Trinitybash.sh
 Submitted batch job 9272355
 ```
-###Day 6
+### Day 6
 
 Homework day 06
 ```sh
@@ -477,7 +477,7 @@ squeue -u ilope002
 10- we need to run the read sorting step required for SNP calling, so if you have time, set up and run the following script on your .sam files to finish before Wednesday:
 
 ```
-###Day 7
+### Day 7
 
 Homework day 07
 ```sh
@@ -593,7 +593,7 @@ squeue -u ilope002
            9276595      main freebaye ilope002 PD       0:00      1 (Priority) 
 
 ```
-###Day 8
+### Day 8
 
 Homework day 08
 ```sh
