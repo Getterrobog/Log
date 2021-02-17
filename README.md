@@ -733,3 +733,178 @@ Outputting Individual Missingness
 After filtering, kept 99853 out of a possible 99853 Sites
 Run Time = 3.00 seconds
 ```
+### Day 9
+
+Homework day 09
+```
+cda
+cd data/VCF
+/cm/shared/apps/vcftools/0.1.12b/bin/vcftools --vcf mergedfastq_HEAAstrangiaAssembly_subset.vcf --maf 0.015 --max-alleles 2 --max-missing 0.5 --minQ 30 --minGQ 20 --minDP 3 --remove-indels --hwe 0.01 --recode --recode-INFO-all --out 18718_mergedfastq_HEAAstrangiaAssembly_subset_ClassFilters
+
+VCFtools - v0.1.12b
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf mergedfastq_HEAAstrangiaAssembly_subset.vcf
+	--recode-INFO-all
+	--maf 0.015
+	--max-alleles 2
+	--minDP 3
+	--minGQ 20
+	--hwe 0.01
+	--minQ 30
+	--max-missing 0.5
+	--out 18718_mergedfastq_HEAAstrangiaAssembly_subset_ClassFilters
+	--recode
+	--remove-indels
+
+After filtering, kept 40 out of 40 Individuals
+Outputting VCF file...
+After filtering, kept 18718 out of a possible 432676 Sites
+Run Time = 11.00 seconds
+
+cut -f 1 out.imiss | tail -n +2
+
+RI_W_06_merged
+RI_W_07_merged
+VA_B_03_merged
+RI_W_02_merged
+RI_W_04_merged
+VA_W_09_SNP_clipped
+RI_B_08_SNP_clipped
+VA_W_08_SNP_clipped
+VA_B_08_SNP_clipped
+VA_W_02_merged
+VA_B_07_merged
+RI_B_05_merged
+VA_W_06_merged
+VA_W_04_merged
+VA_W_01_merged
+VA_B_10_SNP_clipped
+VA_B_06_merged
+VA_W_05_merged
+RI_B_09_SNP_clipped
+VA_W_10_SNP_clipped
+RI_W_08_SNP_clipped
+RI_B_06_merged
+RI_W_10_SNP_clipped
+RI_B_04_merged
+VA_W_03_merged
+RI_B_07_merged
+RI_W_05_merged
+RI_W_09_SNP_clipped
+VA_B_01_merged
+VA_B_09_SNP_clipped
+RI_B_10_SNP_clipped
+RI_W_01_merged
+RI_B_01_merged
+VA_B_04_merged
+RI_B_02_merged
+RI_W_03_merged
+VA_B_02_merged
+VA_W_07_merged
+VA_B_05_merged
+RI_B_03_merged
+
+nano Ivanpopfile.txt
+
+/cm/shared/courses/dbarshis/21AdvGenomics/scripts/vcftogenepop_advbioinf.py 18718_mergedfastq_HEAAstrangiaAssembly_subset_ClassFilters.recode.vcf Ivanpopfile.txt
+
+Indivs with genotypes in vcf file: RI_W_06_merged	RI_W_07_merged	VA_B_03_merged	RI_W_02_merged	RI_W_04_merged	VA_W_09_SNP_clipped	RI_B_08_SNP_clipped	VA_W_08_SNP_clipped	VA_B_08_SNP_clipped	VA_W_02_merged	VA_B_07_merged	RI_B_05_merged	VA_W_06_merged	VA_W_04_merged	VA_W_01_merged	VA_B_10_SNP_clipped	VA_B_06_merged	VA_W_05_merged	RI_B_09_SNP_clipped	VA_W_10_SNP_clipped	RI_W_08_SNP_clipped	RI_B_06_merged	RI_W_10_SNP_clipped	RI_B_04_merged	VA_W_03_merged	RI_B_07_merged	RI_W_05_merged	RI_W_09_SNP_clipped	VA_B_01_merged	VA_B_09_SNP_clipped	RI_B_10_SNP_clipped	RI_W_01_merged	RI_B_01_merged	VA_B_04_merged	RI_B_02_merged	RI_W_03_merged	VA_B_02_merged	VA_W_07_merged	VA_B_05_merged	RI_B_03_merged
+44 18718 18718 18718 18718 40
+
+On R studio:
+>library("ape")
+> library("pegas")
+Loading required package: adegenet
+Loading required package: ade4
+Registered S3 method overwritten by 'spdep':
+  method   from
+  plot.mst ape 
+
+   /// adegenet 2.1.3 is loaded ////////////
+
+   > overview: '?adegenet'
+   > tutorials/doc/questions: 'adegenetWeb()' 
+   > bug reports/feature requests: adegenetIssues()
+
+
+Registered S3 method overwritten by 'pegas':
+  method      from
+  print.amova ade4
+
+Attaching package: ‘pegas’
+
+The following object is masked from ‘package:ade4’:
+
+    amova
+
+The following object is masked from ‘package:ape’:
+
+    mst
+
+> library("seqinr")
+
+Attaching package: ‘seqinr’
+
+The following objects are masked from ‘package:ape’:
+
+    as.alignment, consensus
+
+> library("ggplot2")
+> library("adegenet")
+> setwd("/Users/ivanlopez/Desktop/Daily_Work/Advanced_Genomics/21sp_advgenomics/assignments_exercises/day09")
+> datafile<-read.genepop('18718_mergedfastq_HEAAstrangiaAssembly_subset_ClassFilters.recode_genepop.gen', ncode=2)
+
+ Converting data from a Genepop .gen file to a genind object... 
+
+
+File description:  AllSNPs 
+
+...done.
+
+> sum(is.na(datafile$tab))
+[1] 588000
+> datafile #shows info
+/// GENIND OBJECT /////////
+
+ // 40 individuals; 18,718 loci; 37,436 alleles; size: 17.1 Mb
+
+ // Basic content
+   @tab:  40 x 37436 matrix of allele counts
+   @loc.n.all: number of alleles per locus (range: 2-2)
+   @loc.fac: locus factor for the 37436 columns of @tab
+   @all.names: list of allele names for each locus
+   @ploidy: ploidy of each individual  (range: 2-2)
+   @type:  codom
+   @call: read.genepop(file = "18718_mergedfastq_HEAAstrangiaAssembly_subset_ClassFilters.recode_genepop.gen", 
+    ncode = 2)
+
+ // Optional content
+   @pop: population of each individual (group size range: 10-10)
+> YOURdata<-scaleGen(datafile, NA.method='mean')
+> X<-YOURdata
+> Y<-as.factor(substring(pop(datafile),1,4))
+> pca1 <- dudi.pca(X,cent=F, scale=F, scannf=F, nf=3)
+> s.label(pca1$li)
+> s.class(pca1$li, pop(datafile))
+> col <- c("blue","red", "green", "black")
+> s.class(pca1$li, Y,xax=1,yax=2, col=transp(col,.6), axesell=F, cstar=0, cpoint=3, grid=FALSE, addaxes=TRUE)
+> add.scatter.eig(pca1$eig[1:3], 3,1,2, posi="topright")
+> title("PCA of DJB_data\naxes 1-2")
+a.clust<-snapclust(datafile, k = 2)
+Large dataset syndrome:
+ for 31 individuals, differences in log-likelihoods exceed computer precision;
+ group membership probabilities are approximated
+ (only trust clear-cut values)
+> class(a.clust)
+[1] "snapclust" "list"     
+> names(a.clust)
+[1] "group"     "ll"        "proba"     "converged" "n.iter"    "n.param"  
+> a.tab <- table(pop(datafile), a.clust$group)
+> table.value(a.tab, col.labels = 1:2)
+> 
+> compoplot(a.clust)
+
+All graphs worked
+```
