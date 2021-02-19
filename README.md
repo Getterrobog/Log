@@ -908,3 +908,28 @@ Large dataset syndrome:
 
 All graphs worked
 ```
+### Day 10
+Homework day 10
+```sh
+Ran the R script for the following
+datafile<-read.genepop('coral_279_cloneremoved_neutral.filtered1SNPper_genepop.gen')
+datafile<-read.genepop('coral_66_cloneremoved_highoutliers.filtered1SNPper_genepop.gen')
+logged in to HPC
+cda
+cd data/Sams
+salloc
+salloc: Pending job allocation 9280871
+salloc: job 9280871 queued and waiting for resources
+salloc: job 9280871 has been allocated resources
+salloc: Granted job allocation 9280871
+/cm/shared/courses/dbarshis/21AdvGenomics/scripts/countxpression_SB_advbioinf.py *.sam
+/cm/shared/courses/dbarshis/21AdvGenomics/scripts/ParseExpression2BigTable_advbioinf.py /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/host_genelist.txt IvanFullCounts_summed.txt NoMatch *_counts.txt
+mv match_counts.txt match_countsoutput.txt
+
+Hits not matchedRI_B_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_18_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_22_clippedtrimmed.fastq_counts.txt=1698RI_B_09_SNP_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_18_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_22_clippedtrimmed.fastq_counts.txt=1698	RI_W_09_SNP_clippedtrimmed.fastq_counts.txt=1698VA_B_02_14_clippedtrimmed.fastq_counts.txt=1698	VA_B_02_18_clippedtrimmed.fastq_counts.txt=1698	VA_B_02_22_clippedtrimmed.fastq_counts.txt=1698	VA_B_08_SNP_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_14_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_18_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_22_clippedtrimmed.fastq_counts.txt=1698	VA_W_09_SNP_clippedtrimmed.fastq_counts.txt=1698
+
+
+Transferred file via Filezilla vs scp
+
+Edited file to retain sample names in header
+```
