@@ -812,7 +812,8 @@ nano Ivanpopfile.txt
 
 Indivs with genotypes in vcf file: RI_W_06_merged	RI_W_07_merged	VA_B_03_merged	RI_W_02_merged	RI_W_04_merged	VA_W_09_SNP_clipped	RI_B_08_SNP_clipped	VA_W_08_SNP_clipped	VA_B_08_SNP_clipped	VA_W_02_merged	VA_B_07_merged	RI_B_05_merged	VA_W_06_merged	VA_W_04_merged	VA_W_01_merged	VA_B_10_SNP_clipped	VA_B_06_merged	VA_W_05_merged	RI_B_09_SNP_clipped	VA_W_10_SNP_clipped	RI_W_08_SNP_clipped	RI_B_06_merged	RI_W_10_SNP_clipped	RI_B_04_merged	VA_W_03_merged	RI_B_07_merged	RI_W_05_merged	RI_W_09_SNP_clipped	VA_B_01_merged	VA_B_09_SNP_clipped	RI_B_10_SNP_clipped	RI_W_01_merged	RI_B_01_merged	VA_B_04_merged	RI_B_02_merged	RI_W_03_merged	VA_B_02_merged	VA_W_07_merged	VA_B_05_merged	RI_B_03_merged
 44 18718 18718 18718 18718 40
-
+```
+```sh
 On R studio:
 >library("ape")
 > library("pegas")
@@ -914,6 +915,8 @@ Homework day 10
 Ran the R script for the following
 datafile<-read.genepop('coral_279_cloneremoved_neutral.filtered1SNPper_genepop.gen')
 datafile<-read.genepop('coral_66_cloneremoved_highoutliers.filtered1SNPper_genepop.gen')
+```
+```sh
 logged in to HPC
 cda
 cd data/Sams
@@ -932,4 +935,14 @@ Hits not matchedRI_B_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_18_clipp
 Transferred file via Filezilla vs scp
 
 Edited file to retain sample names in header
+```
+### Day 11
+Homework day 11
+```sh
+On R studio:
+install.packages("BiocManager")
+BiocManager::install("DESeq2")
+install.packages("gplots")
+library(DESeq2)
+library(gplots)
 ```
