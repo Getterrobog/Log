@@ -953,4 +953,6 @@ cd Rstuff
 pwd
 /Users/ivanlopez/Desktop/Daily_Work/Advanced_Genomics/21sp_advgenomics/Rstuff
 Ran R script DESeq2Script_advbioinf to the end
+
+Tested a script to push to Github
 ```
