@@ -736,7 +736,7 @@ Run Time = 3.00 seconds
 ### Day 9
 
 Homework day 09
-```
+```sh
 cda
 cd data/VCF
 /cm/shared/apps/vcftools/0.1.12b/bin/vcftools --vcf mergedfastq_HEAAstrangiaAssembly_subset.vcf --maf 0.015 --max-alleles 2 --max-missing 0.5 --minQ 30 --minGQ 20 --minDP 3 --remove-indels --hwe 0.01 --recode --recode-INFO-all --out 18718_mergedfastq_HEAAstrangiaAssembly_subset_ClassFilters
@@ -911,11 +911,11 @@ All graphs worked
 ```
 ### Day 10
 Homework day 10
-```sh
-Ran the R script for the following
+
+>Ran the R script for the following
 datafile<-read.genepop('coral_279_cloneremoved_neutral.filtered1SNPper_genepop.gen')
 datafile<-read.genepop('coral_66_cloneremoved_highoutliers.filtered1SNPper_genepop.gen')
-```
+
 ```sh
 logged in to HPC
 cda
@@ -931,21 +931,22 @@ mv match_counts.txt match_countsoutput.txt
 
 Hits not matchedRI_B_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_18_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_22_clippedtrimmed.fastq_counts.txt=1698RI_B_09_SNP_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_18_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_22_clippedtrimmed.fastq_counts.txt=1698	RI_W_09_SNP_clippedtrimmed.fastq_counts.txt=1698VA_B_02_14_clippedtrimmed.fastq_counts.txt=1698	VA_B_02_18_clippedtrimmed.fastq_counts.txt=1698	VA_B_02_22_clippedtrimmed.fastq_counts.txt=1698	VA_B_08_SNP_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_14_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_18_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_22_clippedtrimmed.fastq_counts.txt=1698	VA_W_09_SNP_clippedtrimmed.fastq_counts.txt=1698
 
-
 Transferred file via Filezilla vs scp
 
 Edited file to retain sample names in header
 ```
+
 ### Day 11
 Homework day 11
-```sh
-On R studio:
+
+>On R studio:
 install.packages("BiocManager")
 BiocManager::install("DESeq2")
 install.packages("gplots")
 library(DESeq2)
 library(gplots)
 
+```sh
 On local machine:
 
 mkdir Rstuff
@@ -956,3 +957,11 @@ Ran R script DESeq2Script_advbioinf to the end
 
 Tested a script to push to Github
 ```
+
+### Day 12
+Homework day 12
+
+>BiocManager::install("goseq")
+library(goseq)
+library(GO.db)
+
