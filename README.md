@@ -964,4 +964,6 @@ Homework day 12
 >library(goseq)<br>
 >library(GO.db)</p>
 
+Execute R script DESeq2Script_advbioinf_week12
+
 
