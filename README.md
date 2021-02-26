@@ -733,9 +733,11 @@ Outputting Individual Missingness
 After filtering, kept 99853 out of a possible 99853 Sites
 Run Time = 3.00 seconds
 ```
+
 ### Day 9
 
 Homework day 09
+
 ```sh
 cda
 cd data/VCF
@@ -813,6 +815,7 @@ nano Ivanpopfile.txt
 Indivs with genotypes in vcf file: RI_W_06_merged	RI_W_07_merged	VA_B_03_merged	RI_W_02_merged	RI_W_04_merged	VA_W_09_SNP_clipped	RI_B_08_SNP_clipped	VA_W_08_SNP_clipped	VA_B_08_SNP_clipped	VA_W_02_merged	VA_B_07_merged	RI_B_05_merged	VA_W_06_merged	VA_W_04_merged	VA_W_01_merged	VA_B_10_SNP_clipped	VA_B_06_merged	VA_W_05_merged	RI_B_09_SNP_clipped	VA_W_10_SNP_clipped	RI_W_08_SNP_clipped	RI_B_06_merged	RI_W_10_SNP_clipped	RI_B_04_merged	VA_W_03_merged	RI_B_07_merged	RI_W_05_merged	RI_W_09_SNP_clipped	VA_B_01_merged	VA_B_09_SNP_clipped	RI_B_10_SNP_clipped	RI_W_01_merged	RI_B_01_merged	VA_B_04_merged	RI_B_02_merged	RI_W_03_merged	VA_B_02_merged	VA_W_07_merged	VA_B_05_merged	RI_B_03_merged
 44 18718 18718 18718 18718 40
 ```
+
 ```sh
 On R studio:
 >library("ape")
@@ -909,6 +912,7 @@ Large dataset syndrome:
 
 All graphs worked
 ```
+
 ### Day 10
 Homework day 10
 
@@ -932,36 +936,33 @@ mv match_counts.txt match_countsoutput.txt
 Hits not matchedRI_B_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_18_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_22_clippedtrimmed.fastq_counts.txt=1698RI_B_09_SNP_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_18_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_22_clippedtrimmed.fastq_counts.txt=1698	RI_W_09_SNP_clippedtrimmed.fastq_counts.txt=1698VA_B_02_14_clippedtrimmed.fastq_counts.txt=1698	VA_B_02_18_clippedtrimmed.fastq_counts.txt=1698	VA_B_02_22_clippedtrimmed.fastq_counts.txt=1698	VA_B_08_SNP_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_14_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_18_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_22_clippedtrimmed.fastq_counts.txt=1698	VA_W_09_SNP_clippedtrimmed.fastq_counts.txt=1698
 
 Transferred file via Filezilla vs scp
-
 Edited file to retain sample names in header
 ```
 
 ### Day 11
 Homework day 11
 
->On R studio:
-install.packages("BiocManager")
-BiocManager::install("DESeq2")
-install.packages("gplots")
-library(DESeq2)
-library(gplots)
+><p>On R studio:<br>
+install.packages("BiocManager")<br>
+BiocManager::install("DESeq2")<br>
+install.packages("gplots")<br>
+library(DESeq2)<br>
+library(gplots)</p>
 
 ```sh
 On local machine:
-
 mkdir Rstuff
 cd Rstuff
 pwd
 /Users/ivanlopez/Desktop/Daily_Work/Advanced_Genomics/21sp_advgenomics/Rstuff
 Ran R script DESeq2Script_advbioinf to the end
-
 Tested a script to push to Github
 ```
 
 ### Day 12
 Homework day 12
 
->BiocManager::install("goseq")
-library(goseq)
-library(GO.db)
+><p>BiocManager::install("goseq")<br>
+library(goseq)<br>
+library(GO.db)</p>
 
