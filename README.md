@@ -1,5 +1,5 @@
 Log
-================
+***
 ``` sh
 This log will document my workflow throughout the course as well as be a platform for Dr. Barshis to follow my progress.
 ```
@@ -816,10 +816,10 @@ Indivs with genotypes in vcf file: RI_W_06_merged	RI_W_07_merged	VA_B_03_merged	
 44 18718 18718 18718 18718 40
 ```
 
-```sh
 On R studio:
->library("ape")
-> library("pegas")
+```sh
+library("ape")
+library("pegas")
 Loading required package: adegenet
 Loading required package: ade4
 Registered S3 method overwritten by 'spdep':
@@ -828,9 +828,9 @@ Registered S3 method overwritten by 'spdep':
 
    /// adegenet 2.1.3 is loaded ////////////
 
-   > overview: '?adegenet'
-   > tutorials/doc/questions: 'adegenetWeb()' 
-   > bug reports/feature requests: adegenetIssues()
+    overview: '?adegenet'
+    tutorials/doc/questions: 'adegenetWeb()' 
+    bug reports/feature requests: adegenetIssues()
 
 
 Registered S3 method overwritten by 'pegas':
@@ -847,7 +847,7 @@ The following object is masked from ‘package:ape’:
 
     mst
 
-> library("seqinr")
+library("seqinr")
 
 Attaching package: ‘seqinr’
 
@@ -855,21 +855,20 @@ The following objects are masked from ‘package:ape’:
 
     as.alignment, consensus
 
-> library("ggplot2")
-> library("adegenet")
-> setwd("/Users/ivanlopez/Desktop/Daily_Work/Advanced_Genomics/21sp_advgenomics/assignments_exercises/day09")
-> datafile<-read.genepop('18718_mergedfastq_HEAAstrangiaAssembly_subset_ClassFilters.recode_genepop.gen', ncode=2)
+library("ggplot2")
+library("adegenet")
+setwd("/Users/ivanlopez/Desktop/Daily_Work/Advanced_Genomics/21sp_advgenomics/assignments_exercises/day09")
+datafile<-read.genepop('18718_mergedfastq_HEAAstrangiaAssembly_subset_ClassFilters.recode_genepop.gen', ncode=2)
 
  Converting data from a Genepop .gen file to a genind object... 
-
 
 File description:  AllSNPs 
 
 ...done.
 
-> sum(is.na(datafile$tab))
+sum(is.na(datafile$tab))
 [1] 588000
-> datafile #shows info
+datafile #shows info
 /// GENIND OBJECT /////////
 
  // 40 individuals; 18,718 loci; 37,436 alleles; size: 17.1 Mb
@@ -884,41 +883,42 @@ File description:  AllSNPs
    @call: read.genepop(file = "18718_mergedfastq_HEAAstrangiaAssembly_subset_ClassFilters.recode_genepop.gen", 
     ncode = 2)
 
- // Optional content
-   @pop: population of each individual (group size range: 10-10)
-> YOURdata<-scaleGen(datafile, NA.method='mean')
-> X<-YOURdata
-> Y<-as.factor(substring(pop(datafile),1,4))
-> pca1 <- dudi.pca(X,cent=F, scale=F, scannf=F, nf=3)
-> s.label(pca1$li)
-> s.class(pca1$li, pop(datafile))
-> col <- c("blue","red", "green", "black")
-> s.class(pca1$li, Y,xax=1,yax=2, col=transp(col,.6), axesell=F, cstar=0, cpoint=3, grid=FALSE, addaxes=TRUE)
-> add.scatter.eig(pca1$eig[1:3], 3,1,2, posi="topright")
-> title("PCA of DJB_data\naxes 1-2")
+// Optional content
+  @pop: population of each individual (group size range: 10-10)
+YOURdata<-scaleGen(datafile, NA.method='mean')
+X<-YOURdata
+Y<-as.factor(substring(pop(datafile),1,4))
+pca1 <- dudi.pca(X,cent=F, scale=F, scannf=F, nf=3)
+s.label(pca1$li)
+s.class(pca1$li, pop(datafile))
+col <- c("blue","red", "green", "black")
+s.class(pca1$li, Y,xax=1,yax=2, col=transp(col,.6), axesell=F, cstar=0, cpoint=3, grid=FALSE, addaxes=TRUE)
+ add.scatter.eig(pca1$eig[1:3], 3,1,2, posi="topright")
+title("PCA of DJB_data\naxes 1-2")
 a.clust<-snapclust(datafile, k = 2)
 Large dataset syndrome:
- for 31 individuals, differences in log-likelihoods exceed computer precision;
- group membership probabilities are approximated
- (only trust clear-cut values)
-> class(a.clust)
+for 31 individuals, differences in log-likelihoods exceed computer precision;
+group membership probabilities are approximated
+(only trust clear-cut values)
+class(a.clust)
 [1] "snapclust" "list"     
-> names(a.clust)
+names(a.clust)
 [1] "group"     "ll"        "proba"     "converged" "n.iter"    "n.param"  
-> a.tab <- table(pop(datafile), a.clust$group)
-> table.value(a.tab, col.labels = 1:2)
-> 
-> compoplot(a.clust)
+a.tab <- table(pop(datafile), a.clust$group)
+table.value(a.tab, col.labels = 1:2)
 
-All graphs worked
+compoplot(a.clust)
 ```
+All graphs worked
+
+***
 
 ### Day 10
 Homework day 10
 
->Ran the R script for the following
-datafile<-read.genepop('coral_279_cloneremoved_neutral.filtered1SNPper_genepop.gen')
-datafile<-read.genepop('coral_66_cloneremoved_highoutliers.filtered1SNPper_genepop.gen')
+><p>Ran the R script for the following<br>
+>datafile<-read.genepop('coral_279_cloneremoved_neutral.filtered1SNPper_genepop.gen')<br>
+>datafile<-read.genepop('coral_66_cloneremoved_highoutliers.filtered1SNPper_genepop.gen')</p>
 
 ```sh
 logged in to HPC
@@ -932,9 +932,7 @@ salloc: Granted job allocation 9280871
 /cm/shared/courses/dbarshis/21AdvGenomics/scripts/countxpression_SB_advbioinf.py *.sam
 /cm/shared/courses/dbarshis/21AdvGenomics/scripts/ParseExpression2BigTable_advbioinf.py /cm/shared/courses/dbarshis/21AdvGenomics/classdata/Astrangia_poculata/host_genelist.txt IvanFullCounts_summed.txt NoMatch *_counts.txt
 mv match_counts.txt match_countsoutput.txt
-
 Hits not matchedRI_B_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_18_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_22_clippedtrimmed.fastq_counts.txt=1698RI_B_09_SNP_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_18_clippedtrimmed.fastq_counts.txt=1698	RI_W_02_22_clippedtrimmed.fastq_counts.txt=1698	RI_W_09_SNP_clippedtrimmed.fastq_counts.txt=1698VA_B_02_14_clippedtrimmed.fastq_counts.txt=1698	VA_B_02_18_clippedtrimmed.fastq_counts.txt=1698	VA_B_02_22_clippedtrimmed.fastq_counts.txt=1698	VA_B_08_SNP_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_14_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_18_clippedtrimmed.fastq_counts.txt=1698	VA_W_02_22_clippedtrimmed.fastq_counts.txt=1698	VA_W_09_SNP_clippedtrimmed.fastq_counts.txt=1698
-
 Transferred file via Filezilla vs scp
 Edited file to retain sample names in header
 ```
@@ -943,11 +941,11 @@ Edited file to retain sample names in header
 Homework day 11
 
 ><p>On R studio:<br>
-install.packages("BiocManager")<br>
-BiocManager::install("DESeq2")<br>
-install.packages("gplots")<br>
-library(DESeq2)<br>
-library(gplots)</p>
+>install.packages("BiocManager")<br>
+>BiocManager::install("DESeq2")<br>
+>install.packages("gplots")<br>
+>library(DESeq2)<br>
+>library(gplots)</p>
 
 ```sh
 On local machine:
@@ -963,6 +961,7 @@ Tested a script to push to Github
 Homework day 12
 
 ><p>BiocManager::install("goseq")<br>
-library(goseq)<br>
-library(GO.db)</p>
+>library(goseq)<br>
+>library(GO.db)</p>
+
 
