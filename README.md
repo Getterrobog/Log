@@ -1,5 +1,6 @@
 Log
 ***
+### Day 1
 ``` sh
 This log will document my workflow throughout the course as well as be a platform for Dr. Barshis to follow my progress.
 ```
@@ -11,6 +12,7 @@ git add README.md
 git commit -m "insert relevant comment"
 git push -u origin main
 ```
+***
 ### Day 2
 
 Exercise day02
@@ -75,6 +77,7 @@ Submitted batch job 9270463
            9270431      main       sh ilope002  R      54:38      1 coreV2-25-072 
            9270463      main Ivan_fas ilope002  R       0:38      1 coreV2-25-072
 ```
+***
 ### Day 3
 
 Homework day03
@@ -121,6 +124,7 @@ cp ../../scripts/Trimclipfilterstatsbatch_advbioinf.py .
 Trimclipfilter.sh 
 Submitted batch job 9270553
 ```
+***
 ### Day 4
 ```sh
 I created an alias (cda) to cd to my sandbox
@@ -159,6 +163,7 @@ squeue -u ilope002
            9271111      main  JOBNAME ilope002  R       0:09      1 coreV2-25-007 
            9271099      main       sh ilope002  R    1:03:39      1 coreV3-23-033 
 ```
+***
 ### Day 5
 
 Homework day 05
@@ -192,6 +197,7 @@ salloc: Granted job allocation 9272354
 [kpark049@coreV2-22-007 Trinity]$ sbatch Trinitybash.sh
 Submitted batch job 9272355
 ```
+***
 ### Day 6
 
 Homework day 06
@@ -477,6 +483,7 @@ squeue -u ilope002
 10- we need to run the read sorting step required for SNP calling, so if you have time, set up and run the following script on your .sam files to finish before Wednesday:
 
 ```
+***
 ### Day 7
 
 Homework day 07
@@ -593,6 +600,7 @@ squeue -u ilope002
            9276595      main freebaye ilope002 PD       0:00      1 (Priority) 
 
 ```
+***
 ### Day 8
 
 Homework day 08
@@ -733,7 +741,7 @@ Outputting Individual Missingness
 After filtering, kept 99853 out of a possible 99853 Sites
 Run Time = 3.00 seconds
 ```
-
+***
 ### Day 9
 
 Homework day 09
@@ -912,8 +920,8 @@ compoplot(a.clust)
 All graphs worked
 
 ***
-
 ### Day 10
+
 Homework day 10
 
 ><p>Ran the R script for the following<br>
@@ -936,8 +944,9 @@ Hits not matchedRI_B_02_14_clippedtrimmed.fastq_counts.txt=1698	RI_B_02_18_clipp
 Transferred file via Filezilla vs scp
 Edited file to retain sample names in header
 ```
-
+***
 ### Day 11
+
 Homework day 11
 
 ><p>On R studio:<br>
@@ -956,8 +965,9 @@ pwd
 Ran R script DESeq2Script_advbioinf to the end
 Tested a script to push to Github
 ```
-
+***
 ### Day 12
+
 Homework day 12
 
 ><p>BiocManager::install("goseq")<br>
@@ -966,4 +976,33 @@ Homework day 12
 
 Execute R script DESeq2Script_advbioinf_week12
 
+***
+### Day 13
+
+Downloaded Integrative Genomics Viewer (IGV) from https://software.broadinstitute.org/software/igv/download.  My system required the download with java.
+
+```sh
+cda
+cd ../
+pwd
+/cm/shared/courses/dbarshis/21AdvGenomics/sandboxes
+
+nano IvanSandboxinatior
+
+#!/bin/bash -l
+
+#SBATCH -o ivansandboxremoval.txt
+#SBATCH -n 1
+#SBATCH --mail-user=ilope002@odu.edu
+#SBATCH --mail-type=END
+#SBATCH --job-name=Ivan_sandboxinator
+
+rm -r /cm/shared/courses/dbarshis/21AdvGenomics/sandboxes/Ivan/
+
+sbatch IvanSandboxinator.sh
+```
+
+Used Filezilla to transfer files for step 3 and 4.
+
+Completed IGV exercise.  End of course.  End of log.
 
